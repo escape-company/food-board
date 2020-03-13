@@ -1,0 +1,38 @@
+{
+	"env": {
+		"es6": true,
+		"node": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:prettier/recommended",
+		"prettier",
+		"prettier/@typescript-eslint",
+		"plugin:sonarjs/recommended",
+		"plugin:import/errors",
+		"plugin:import/warnings",
+		"plugin:import/typescript"
+	],
+	"globals": {
+		"Atomics": "readonly",
+		"SharedArrayBuffer": "readonly"
+	},
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 2018,
+		"sourceType": "module"
+	},
+	"plugins": [
+		"@typescript-eslint",
+		"prettier",
+		"import"
+	],
+	"rules": {
+		"prettier/prettier": "error",
+		"no-unused-vars": 0,
+		"sonarjs/cognitive-complexity": ["error", 50],
+		"sonarjs/no-duplicate-string": ["error", 5],
+		"sonarjs/no-identical-functions": "error"
+	}
+}
