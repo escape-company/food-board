@@ -1,0 +1,7 @@
+{
+  "eslint.validate": ["typescript"],
+  "editor.formatOnSave": false,
+  "[typescript]": {
+    "editor.formatOnSave": true
+  }
+}
