@@ -1,24 +1,18 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import GraphqlConfigService from './services/gql.service';
+import TypeOrmConfigService from './services/db.service';
+import UserModule from './modules/user.module';
+
 @Module({
-  imports: [
-    GraphQLModule.forRoot({}),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'nodejsstudy.c1pqggqqcx7t.ap-northeast-2.rds.amazonaws.com',
-      port: 3306,
-      username: 'admin',
-      password: 'nodejsstudy1!',
-      database: 'food_board',
-      entities: [],
-      synchronize: true,
-    }),
-  ],
   controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    GraphQLModule.forRootAsync({ useClass: GraphqlConfigService }),
+    TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
+    UserModule,
+  ],
 })
-export class AppModule {}
+export default class AppModule {}

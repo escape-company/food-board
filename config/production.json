@@ -1,0 +1,20 @@
+{
+  "db": {
+    "replication": {
+      "master": {
+        "host": "nodejsstudy.c1pqggqqcx7t.ap-northeast-2.rds.amazonaws.com",
+        "username": "admin",
+        "password": "nodejsstudy1!",
+        "database": "food_board"
+      },
+      "slaves": [
+        {
+          "host": "nodejsstudy.c1pqggqqcx7t.ap-northeast-2.rds.amazonaws.com",
+          "username": "admin",
+          "password": "nodejsstudy1!",
+          "database": "food_board"
+        }
+      ]
+    }
+  }
+}

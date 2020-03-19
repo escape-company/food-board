@@ -1,0 +1,9 @@
+{
+  "db": {
+    "type": "mysql",
+    "logging": false,
+    "replication": {
+      "selector": "RR"
+    }
+  }
+}
