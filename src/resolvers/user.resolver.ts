@@ -6,7 +6,7 @@ import UserService from '../services/user.service';
 export default class UserResolver {
   constructor(private readonly userService: UserService) {}
 
-  @Query(_type => UserType)
+  @Query(_returns => [UserType])
   async test() {
     return await this.userService.getUser();
   }
