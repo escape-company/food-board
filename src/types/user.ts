@@ -6,6 +6,9 @@ export class UserType implements Partial<User> {
   @Field(_type => Int)
   id: number;
 
-  @Field(_type => String)
+  @Field(_type => String, { nullable: true })
   socialId?: string;
+
+  @Field(_type => String, { nullable: true })
+  token?: string;
 }
