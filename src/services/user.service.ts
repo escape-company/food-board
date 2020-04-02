@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import Service from './service';
 import UserRepository from '../repositories/user.repository';
+import User from '../models/user.entity';
 
 @Injectable()
 export default class UserService extends Service {
@@ -8,7 +9,7 @@ export default class UserService extends Service {
     super();
   }
 
-  async getUser() {
-    return this.userRepository.getOne();
+  async getUser(): Promise<User[]> {
+    return this.userRepository.getAll();
   }
 }

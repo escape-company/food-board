@@ -12,9 +12,6 @@ export default class User {
   token: string;
 
   @Column()
-  filename: string;
-
-  @Column()
   createdAt: Date;
 
   @Column()

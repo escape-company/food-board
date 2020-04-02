@@ -4,7 +4,7 @@ import { BaseRepository } from 'typeorm-transactional-cls-hooked';
 
 @EntityRepository(User)
 export default class UserRepository extends BaseRepository<User> {
-  async getOne() {
-    return this.getOne();
+  async getAll() {
+    return this.find();
   }
 }
