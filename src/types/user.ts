@@ -1,5 +1,6 @@
 import { ObjectType, Field, Int, InputType } from 'type-graphql';
 import { FavoriteType } from './favorite';
+import { IsInt, IsArray, IsOptional } from 'class-validator';
 
 @ObjectType()
 export class UserType {
@@ -19,11 +20,20 @@ export class UserType {
 @InputType()
 export class UserInputType {
   @Field(_type => [Int], { nullable: true })
+  @IsInt({
+    each: true,
+  })
+  @IsArray()
+  @IsOptional()
   ids?: number[];
 
   @Field(_type => Int, { nullable: true })
+  @IsInt()
+  @IsOptional()
   offset?: number;
 
   @Field(_type => Int, { nullable: true })
+  @IsInt()
+  @IsOptional()
   limit?: number;
 }
