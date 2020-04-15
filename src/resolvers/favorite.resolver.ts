@@ -1,6 +1,6 @@
 import { Resolver, Query } from '@nestjs/graphql';
-import { FavoriteType } from '../types/favorites';
-import FavoriteService from '../services/favorites.service';
+import { FavoriteType } from '../types/favorite';
+import FavoriteService from '../services/favorite.service';
 
 @Resolver(_of => FavoriteType)
 export default class FavoriteResolver {
