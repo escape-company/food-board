@@ -7,7 +7,7 @@ export default class UserResolver {
   constructor(private readonly userService: UserService) {}
 
   @Query(_returns => [UserType])
-  async test() {
+  async users() {
     return await this.userService.getUser();
   }
 }

@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import Service from './service';
-import FavoritesRepository from '../repositories/favorites.repository';
-import Favorites from '../models/favorites.entity';
+import FavoriteRepository from '../repositories/favorite.repository';
+import Favorites from '../models/favorite.entity';
 
 @Injectable()
-export default class FavoriesService extends Service {
-  constructor(private readonly favoritesRepository: FavoritesRepository) {
+export default class FavoriteService extends Service {
+  constructor(private readonly favoriteRepository: FavoriteRepository) {
     super();
   }
 
   async getFavorites(): Promise<Favorites[]> {
-    return this.favoritesRepository.getAll();
+    return this.favoriteRepository.getAll();
   }
 }

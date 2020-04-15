@@ -7,7 +7,7 @@ import GraphqlConfigService from './services/gql.service';
 import TypeOrmConfigService from './services/db.service';
 import UserModule from './modules/user.module';
 import StoreModule from './modules/store.module';
-import FavoritesModule from './modules/favorites.module';
+import FavoriteModule from './modules/favorite.module';
 import CategoryModule from './modules/category.module';
 
 @Module({
@@ -17,7 +17,7 @@ import CategoryModule from './modules/category.module';
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     UserModule,
     StoreModule,
-    FavoritesModule,
+    FavoriteModule,
     CategoryModule,
   ],
 })
