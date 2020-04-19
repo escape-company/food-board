@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import Service from './service';
 import CategoryRepository from '../repositories/category.repository';
-import Category from '../models/category.entity';
+import { CategoryInputType, CategoryType } from '../types/category';
 
 @Injectable()
 export default class CategoryService extends Service {
@@ -9,7 +9,16 @@ export default class CategoryService extends Service {
     super();
   }
 
-  async getCategory(): Promise<Category[]> {
-    return this.categoryRepository.getAll();
+  async getCategory(options?: CategoryInputType): Promise<CategoryType[]> {
+    const queryBuilder = this.categoryRepository.createQueryBuilder('category');
+
+    if (options?.ids) {
+      queryBuilder.andWhere('id IN (:ids)', { ids: [...options.ids] });
+    }
+
+    queryBuilder.skip((options && options.offset) || 0);
+    queryBuilder.take((options && options.limit) || 100);
+    const result = await queryBuilder.getMany();
+    return result;
   }
 }
