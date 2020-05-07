@@ -14,12 +14,6 @@ export class FavoriteType implements Partial<Favorite> {
   storeId?: number;
 }
 
-@ObjectType()
-export class FavoriteCountType {
-  @Field(_type => Int)
-  count: number;
-}
-
 @InputType()
 export class FavoriteOptions {
   @Field(_type => Int, { nullable: false })
