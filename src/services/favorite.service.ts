@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import Service from './service';
 import FavoriteRepository from '../repositories/favorite.repository';
-import Favorites from '../models/favorite.entity';
+import { FavoriteInputType, FavoriteType } from '../types/favorite';
+//import Favorite from '../models/favorite.entity';
 
 @Injectable()
 export default class FavoriteService extends Service {
@@ -9,7 +10,35 @@ export default class FavoriteService extends Service {
     super();
   }
 
-  async getFavorites(): Promise<Favorites[]> {
-    return this.favoriteRepository.getAll();
+  async setFavoriteStore(options?: FavoriteInputType): Promise<number> {
+    const countQueryBuilder = this.favoriteRepository.createQueryBuilder('favorite');
+    const setQueryBuilder = this.favoriteRepository.createQueryBuilder('favorite');
+
+    countQueryBuilder.andWhere('userId = :userId', { userId: options.userId });
+    countQueryBuilder.andWhere('storeId = :storeId', { storeId: options.storeId });
+
+    countQueryBuilder.skip((options && options.offset) || 0);
+    countQueryBuilder.take((options && options.limit) || 100);
+    const result = await countQueryBuilder.getCount();
+
+    if (result > 0) {
+      setQueryBuilder.delete();
+      setQueryBuilder.where('userId = :userId', { userId: options.userId });
+      setQueryBuilder.andWhere('storeId = :storeId', { storeId: options.storeId });
+    } else {
+      const userFavorite = new FavoriteType();
+      userFavorite.userId = options.userId;
+      userFavorite.storeId = options.storeId;
+
+      setQueryBuilder.insert().values(userFavorite);
+    }
+
+    console.log(countQueryBuilder.getQueryAndParameters());
+    console.log(setQueryBuilder.getQueryAndParameters());
+
+    const tempResult = await setQueryBuilder.execute();
+    console.log(tempResult);
+
+    return result;
   }
 }
