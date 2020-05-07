@@ -3,16 +3,16 @@ import User from './user.entity';
 
 @Entity('favorite')
 export default class Favorite {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
-  @Column()
+  @Column({ name: 'user_id' })
   userId: number;
 
-  @Column()
+  @Column({ name: 'store_id' })
   storeId: number;
 
-  @Column()
+  @Column({ name: 'created_at' })
   createdAt: Date;
 
   @ManyToOne(
