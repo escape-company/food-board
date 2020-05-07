@@ -1,18 +1,18 @@
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
 import User from './user.entity';
 
-@Entity()
+@Entity('favorite')
 export default class Favorite {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
-  @Column()
+  @Column({ name: 'user_id' })
   userId: number;
 
-  @Column()
+  @Column({ name: 'store_id' })
   storeId: number;
 
-  @Column()
+  @Column({ name: 'created_at' })
   createdAt: Date;
 
   @ManyToOne(
@@ -20,5 +20,5 @@ export default class Favorite {
     user => user.favorites,
   )
   @JoinColumn({ name: 'user_id' })
-  user: User;
+  user?: User;
 }

@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('category')
 export default class Category {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
-  @Column()
+  @Column({ name: 'name' })
   name: string;
 
-  @Column()
+  @Column({ name: 'created_at' })
   createdAt: Date;
 }

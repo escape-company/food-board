@@ -7,7 +7,7 @@ export default class TypeOrmConfigService implements TypeOrmOptionsFactory {
     return {
       ...dbConfig,
       cache: false,
-      synchronize: true,
+      synchronize: false,
       entities: [`${__dirname}/../models/*.entity.[jt]s`],
     };
   }

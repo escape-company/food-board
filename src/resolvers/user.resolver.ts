@@ -1,5 +1,5 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { UserType, UserInputType } from '../types/user';
+import { UserType, UserOptions } from '../types/user';
 import UserService from '../services/user.service';
 
 @Resolver(_of => UserType)
@@ -15,10 +15,10 @@ export default class UserResolver {
     @Args({
       name: 'options',
       description: 'user 정보를 가져오기 위한 옵션',
-      type: () => UserInputType,
+      type: () => UserOptions,
       nullable: true,
     })
-    options: UserInputType,
+    options: UserOptions,
   ) {
     options = options ? { ...options } : null;
     return await this.userService.getUsers(options);

@@ -1,13 +1,26 @@
-import { Resolver, Query } from '@nestjs/graphql';
-import { CategoryType } from '../types/category';
+import { Resolver, Query, Args } from '@nestjs/graphql';
+import { CategoryType, CategoryOptions } from '../types/category';
 import CategoryService from '../services/category.service';
 
 @Resolver(_of => CategoryType)
 export default class CategoryResolver {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @Query(_returns => [CategoryType])
-  async test() {
-    return await this.categoryService.getCategory();
+  @Query(_returns => [CategoryType], {
+    name: 'category',
+    description: 'category 정보를 가져옵니다.',
+    nullable: true,
+  })
+  async getCategories(
+    @Args({
+      name: 'options',
+      description: 'category 정보를 가져오기 위한 옵션',
+      type: () => CategoryOptions,
+      nullable: true,
+    })
+    options: CategoryOptions,
+  ) {
+    options = options ? { ...options } : null;
+    return await this.categoryService.getCategories(options);
   }
 }
