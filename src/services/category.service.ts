@@ -9,7 +9,7 @@ export default class CategoryService extends Service {
     super();
   }
 
-  async getCategory(options?: CategoryInputType): Promise<CategoryType[]> {
+  async getCategories(options?: CategoryInputType): Promise<CategoryType[]> {
     const queryBuilder = this.categoryRepository.createQueryBuilder('category');
 
     if (options?.ids) {
@@ -18,7 +18,6 @@ export default class CategoryService extends Service {
 
     queryBuilder.skip((options && options.offset) || 0);
     queryBuilder.take((options && options.limit) || 100);
-    const result = await queryBuilder.getMany();
-    return result;
+    return await queryBuilder.getMany();
   }
 }

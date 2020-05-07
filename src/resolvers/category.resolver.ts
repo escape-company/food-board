@@ -11,7 +11,7 @@ export default class CategoryResolver {
     description: 'category 정보를 가져옵니다.',
     nullable: true,
   })
-  async getCategory(
+  async getCategories(
     @Args({
       name: 'options',
       description: 'category 정보를 가져오기 위한 옵션',
@@ -21,6 +21,6 @@ export default class CategoryResolver {
     options: CategoryInputType,
   ) {
     options = options ? { ...options } : null;
-    return await this.categoryService.getCategory(options);
+    return await this.categoryService.getCategories(options);
   }
 }
