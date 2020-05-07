@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import Service from './service';
 import FavoriteRepository from '../repositories/favorite.repository';
 import { FavoriteInputType, FavoriteType } from '../types/favorite';
-import Favorite from '../models/favorite.entity';
 //import Favorite from '../models/favorite.entity';
 
 @Injectable()
@@ -23,21 +22,13 @@ export default class FavoriteService extends Service {
     const result = await countQueryBuilder.getCount();
 
     if (result > 0) {
-      setQueryBuilder
-        .delete()
-        .from(Favorite)
-        .where('userId = :userId', { userId: options.userId })
-        .andWhere('storeId = :storeId', { storeId: options.storeId })
-        .execute();
+      await this.favoriteRepository.delete({ userId: options.userId, storeId: options.storeId });
     } else {
       const userFavorite = new FavoriteType();
       userFavorite.userId = options.userId;
       userFavorite.storeId = options.storeId;
 
-      setQueryBuilder
-        .insert()
-        .values(userFavorite)
-        .execute();
+      await this.favoriteRepository.insert(userFavorite);
     }
 
     console.log(countQueryBuilder.getQueryAndParameters());
