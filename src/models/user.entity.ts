@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import Favorite from './favorite.entity';
 
-@Entity()
+@Entity('user')
 export default class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -20,7 +20,7 @@ export default class User {
 
   @OneToMany(
     _type => Favorite,
-    favorites => favorites.user,
+    favorite => favorite.user,
   )
-  favorites: Favorite[];
+  favorites?: Favorite[];
 }

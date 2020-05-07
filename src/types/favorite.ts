@@ -1,9 +1,9 @@
 import { ObjectType, Field, Int, InputType } from 'type-graphql';
-import Favorites from '../models/favorite.entity';
+import Favorite from '../models/favorite.entity';
 import { IsInt, IsOptional } from 'class-validator';
 
 @ObjectType()
-export class FavoriteType implements Partial<Favorites> {
+export class FavoriteType implements Partial<Favorite> {
   @Field(_type => Int)
   id: number;
 

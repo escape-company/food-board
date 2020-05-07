@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
 import User from './user.entity';
 
-@Entity()
+@Entity('favorite')
 export default class Favorite {
   @PrimaryGeneratedColumn()
   id: number;
@@ -20,5 +20,5 @@ export default class Favorite {
     user => user.favorites,
   )
   @JoinColumn({ name: 'user_id' })
-  user: User;
+  user?: User;
 }
