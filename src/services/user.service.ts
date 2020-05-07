@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import Service from './service';
 import UserRepository from '../repositories/user.repository';
-import { UserInputType, UserType } from '../types/user';
+import { UserOptions, UserType } from '../types/user';
 
 @Injectable()
 export default class UserService extends Service {
@@ -9,7 +9,7 @@ export default class UserService extends Service {
     super();
   }
 
-  async getUsers(options?: UserInputType): Promise<UserType[]> {
+  async getUsers(options?: UserOptions): Promise<UserType[]> {
     const queryBuilder = this.userRepository.createQueryBuilder('user').leftJoinAndSelect('user.favorites', 'favorite');
 
     if (options?.ids) {

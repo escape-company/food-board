@@ -18,7 +18,7 @@ export class UserType {
 }
 
 @InputType()
-export class UserInputType {
+export class UserOptions {
   @Field(_type => [Int], { nullable: true })
   @IsInt({
     each: true,

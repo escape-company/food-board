@@ -21,7 +21,7 @@ export class FavoriteCountType {
 }
 
 @InputType()
-export class FavoriteInputType {
+export class FavoriteOptions {
   @Field(_type => Int, { nullable: false })
   @IsOptional()
   userId?: number;

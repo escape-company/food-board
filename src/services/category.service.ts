@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import Service from './service';
 import CategoryRepository from '../repositories/category.repository';
-import { CategoryInputType, CategoryType } from '../types/category';
+import { CategoryOptions, CategoryType } from '../types/category';
 
 @Injectable()
 export default class CategoryService extends Service {
@@ -9,7 +9,7 @@ export default class CategoryService extends Service {
     super();
   }
 
-  async getCategories(options?: CategoryInputType): Promise<CategoryType[]> {
+  async getCategories(options?: CategoryOptions): Promise<CategoryType[]> {
     const queryBuilder = this.categoryRepository.createQueryBuilder('category');
 
     if (options?.ids) {

@@ -12,7 +12,7 @@ export class CategoryType implements Partial<Category> {
 }
 
 @InputType()
-export class CategoryInputType {
+export class CategoryOptions {
   @Field(_type => [Int], { nullable: true })
   @IsInt({
     each: true,

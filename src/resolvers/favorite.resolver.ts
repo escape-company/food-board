@@ -1,5 +1,5 @@
 import { Resolver, Args, Mutation } from '@nestjs/graphql';
-import { FavoriteType, FavoriteInputType } from '../types/favorite';
+import { FavoriteType, FavoriteOptions } from '../types/favorite';
 import FavoriteService from '../services/favorite.service';
 
 @Resolver(_of => FavoriteType)
@@ -15,10 +15,10 @@ export default class FavoriteResolver {
     @Args({
       name: 'options',
       description: 'user의 즐겨찾기를 설정/해제 하기위한 옵션',
-      type: () => FavoriteInputType,
+      type: () => FavoriteOptions,
       nullable: true,
     })
-    options: FavoriteInputType,
+    options: FavoriteOptions,
   ) {
     await this.favoriteService.setFavoriteStore(options);
     return true;

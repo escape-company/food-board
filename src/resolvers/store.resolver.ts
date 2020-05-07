@@ -1,5 +1,5 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
-import { StoreType, StoreInputType } from '../types/store';
+import { StoreType, StoreOptions } from '../types/store';
 import StoreService from '../services/store.service';
 
 @Resolver(_of => StoreType)
@@ -15,10 +15,10 @@ export default class StoreResolver {
     @Args({
       name: 'options',
       description: 'store 정보를 가져오기 위한 옵션',
-      type: () => StoreInputType,
+      type: () => StoreOptions,
       nullable: true,
     })
-    options: StoreInputType,
+    options: StoreOptions,
   ) {
     options = options ? { ...options } : null;
     return await this.storeService.getStores(options);

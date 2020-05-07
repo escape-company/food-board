@@ -18,7 +18,7 @@ export class StoreType implements Partial<Store> {
 }
 
 @InputType()
-export class StoreInputType {
+export class StoreOptions {
   @Field(_type => [Int], { nullable: true })
   @IsInt({
     each: true,

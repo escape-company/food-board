@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import Service from './service';
 import FavoriteRepository from '../repositories/favorite.repository';
-import { FavoriteInputType, FavoriteType } from '../types/favorite';
+import { FavoriteOptions, FavoriteType } from '../types/favorite';
 
 @Injectable()
 export default class FavoriteService extends Service {
@@ -9,7 +9,7 @@ export default class FavoriteService extends Service {
     super();
   }
 
-  async setFavoriteStore(options?: FavoriteInputType): Promise<number> {
+  async setFavoriteStore(options?: FavoriteOptions): Promise<number> {
     const countQueryBuilder = this.favoriteRepository.createQueryBuilder('favorite');
 
     countQueryBuilder.andWhere('userId = :userId', { userId: options.userId });
