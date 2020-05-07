@@ -18,7 +18,6 @@ export default class StoreService extends Service {
 
     queryBuilder.skip((options && options.offset) || 0);
     queryBuilder.take((options && options.limit) || 100);
-    const result = await queryBuilder.getMany();
-    return result;
+    return await queryBuilder.getMany();
   }
 }

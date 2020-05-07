@@ -13,13 +13,11 @@ export default class UserService extends Service {
     const queryBuilder = this.userRepository.createQueryBuilder('user').leftJoinAndSelect('user.favorites', 'favorite');
 
     if (options?.ids) {
-      queryBuilder.andWhere('user.id IN :ids', { ids: [...options.ids] });
+      queryBuilder.andWhere('user.id IN (:ids)', { ids: [...options.ids] });
     }
 
     queryBuilder.skip((options && options.offset) || 0);
     queryBuilder.take((options && options.limit) || 100);
-    const result = await queryBuilder.getMany();
-    console.log(result);
-    return result;
+    return await queryBuilder.getMany();
   }
 }
