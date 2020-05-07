@@ -18,6 +18,6 @@ export default class UserService extends Service {
 
     queryBuilder.skip((options && options.offset) || 0);
     queryBuilder.take((options && options.limit) || 100);
-    return await queryBuilder.getMany();
+    return queryBuilder.getMany();
   }
 }
