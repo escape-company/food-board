@@ -1,19 +1,19 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('store')
 export default class Store {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
-  @Column()
+  @Column({ name: 'name' })
   name: string;
 
-  @Column()
+  @Column({ name: 'address' })
   address: string;
 
-  @Column()
+  @Column({ name: 'category_id' })
   categoryId: number;
 
-  @Column()
+  @Column({ name: 'created_at' })
   createdAt: Date;
 }

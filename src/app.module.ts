@@ -6,6 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import GraphqlConfigService from './services/gql.service';
 import TypeOrmConfigService from './services/db.service';
 import UserModule from './modules/user.module';
+import StoreModule from './modules/store.module';
+import FavoriteModule from './modules/favorite.module';
+import CategoryModule from './modules/category.module';
 
 @Module({
   controllers: [AppController],
@@ -13,6 +16,9 @@ import UserModule from './modules/user.module';
     GraphQLModule.forRootAsync({ useClass: GraphqlConfigService }),
     TypeOrmModule.forRootAsync({ useClass: TypeOrmConfigService }),
     UserModule,
+    StoreModule,
+    FavoriteModule,
+    CategoryModule,
   ],
 })
 export default class AppModule {}

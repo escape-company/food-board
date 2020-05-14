@@ -6,7 +6,7 @@ export default class TypeOrmConfigService implements TypeOrmOptionsFactory {
     const dbConfig: Partial<TypeOrmModuleOptions> = config.get('db');
     return {
       ...dbConfig,
-      cache: true,
+      cache: false,
       synchronize: false,
       entities: [`${__dirname}/../models/*.entity.[jt]s`],
     };

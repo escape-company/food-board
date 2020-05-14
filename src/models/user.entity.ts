@@ -1,19 +1,26 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import Favorite from './favorite.entity';
 
-@Entity()
+@Entity('user')
 export default class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ name: 'id' })
   id: number;
 
-  @Column()
+  @Column({ name: 'social_id' })
   socialId: string;
 
-  @Column()
+  @Column({ name: 'token' })
   token: string;
 
-  @Column()
+  @Column({ name: 'created_at' })
   createdAt: Date;
 
-  @Column()
+  @Column({ name: 'updated_at' })
   updatedAt: Date;
+
+  @OneToMany(
+    _type => Favorite,
+    favorite => favorite.user,
+  )
+  favorites?: Favorite[];
 }

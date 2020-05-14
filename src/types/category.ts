@@ -1,24 +1,18 @@
 import { ObjectType, Field, Int, InputType } from 'type-graphql';
-import { FavoriteType } from './favorite';
+import Category from '../models/category.entity';
 import { IsInt, IsArray, IsOptional } from 'class-validator';
 
 @ObjectType()
-export class UserType {
+export class CategoryType implements Partial<Category> {
   @Field(_type => Int)
   id: number;
 
   @Field(_type => String, { nullable: true })
-  socialId?: string;
-
-  @Field(_type => String, { nullable: true })
-  token?: string;
-
-  @Field(_type => [FavoriteType], { nullable: true })
-  favorites?: FavoriteType[];
+  name?: string;
 }
 
 @InputType()
-export class UserOptions {
+export class CategoryOptions {
   @Field(_type => [Int], { nullable: true })
   @IsInt({
     each: true,
